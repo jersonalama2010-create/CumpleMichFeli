@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Sorpresa 💝</title>
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(135deg,#ff758c,#ff7eb3,#ffd3a5);
+overflow:hidden;
+color:white;
+text-align:center;
+}
+
+/* estrellas */
+
+.star{
+position:absolute;
+color:white;
+font-size:14px;
+opacity:0.8;
+animation:brillar 2s infinite alternate;
+}
+
+@keyframes brillar{
+from{opacity:0.2}
+to{opacity:1}
+}
+
+/* botón */
+
+button{
+padding:26px 55px;
+font-size:34px;
+border:none;
+border-radius:60px;
+background:#ff2e63;
+color:white;
+cursor:pointer;
+box-shadow:0 12px 28px rgba(0,0,0,0.35);
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.12);
+}
+
+/* mensaje */
+
+#mensaje{
+display:none;
+font-size:72px;
+font-weight:bold;
+text-shadow:
+0 0 10px #fff,
+0 0 25px #ff4d6d,
+0 0 45px #ff4d6d;
+margin-bottom:25px;
+}
+
+/* carta */
+
+#carta{
+max-width:700px;
+font-size:26px;
+line-height:1.7;
+display:none;
+margin-top:20px;
+}
+
+/* corazones */
+
+.heart{
+position:absolute;
+bottom:-50px;
+font-size:34px;
+animation:subir 6s linear infinite;
+}
+
+@keyframes subir{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-110vh);opacity:0;}
+}
+
+/* claveles */
+
+.flower{
+position:absolute;
+top:-50px;
+font-size:40px;
+animation:caer 7s linear infinite;
+}
+
+@keyframes caer{
+to{
+transform:translateY(110vh) rotate(360deg);
+}
+}
+
+/* confeti */
+
+.confetti{
+position:absolute;
+width:12px;
+height:12px;
+top:-10px;
+animation:confeti 5s linear infinite;
+}
+
+@keyframes confeti{
+to{
+transform:translateY(110vh) rotate(720deg);
+}
+}
+
+/* fuegos artificiales */
+
+.firework{
+position:absolute;
+font-size:55px;
+animation:boom 1s ease-out forwards;
+}
+
+@keyframes boom{
+0%{transform:scale(0);}
+100%{transform:scale(2.2);opacity:0;}
+}
+
+</style>
+</head>
+<body>
+🎁 ÁBRELO 💖
+<div id="mensaje"></div>
+<div id="carta">
+Hoy no solo celebramos tu cumpleaños,<br>
+celebramos lo especial que eres.<br><br>
+Gracias por existir, por tu sonrisa,
+por la luz que llevas contigo
+y por hacer que los días sean más bonitos.
+
+Espero que este nuevo año de tu vida
+esté lleno de sueños cumplidos,
+momentos felices y muchas razones para sonreír.
+
+Feliz cumpleaños, preciosa de mi corazón. 💖
+</div>
+
+<audio id="musica" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">
+</audio>
+<script>
+
+/* estrellas */
+
+for(let i=0;i<70;i++){
+const star=document.createElement("div")
+star.classList.add("star")
+star.innerHTML="✦"
+star.style.left=Math.random()*100+"vw"
+star.style.top=Math.random()*100+"vh"
+document.body.appendChild(star)
+}
+
+/* texto que se escribe */
+
+const texto="🎉 FELIZ CUMPLEAÑOS\nPRECIOSA DE MI CORAZÓN 💖"
+let i=0
+
+function escribir(){
+if(i<texto.length){
+document.getElementById("mensaje").innerHTML+=texto[i]=="\n"?"<br>":texto[i]
+i++
+setTimeout(escribir,70)
+}else{
+document.getElementById("carta").style.display="block"
+}
+}
+
+/* abrir sorpresa */
+
+function abrir(){
+
+document.getElementById("boton").style.display="none"
+
+const m=document.getElementById("mensaje")
+m.style.display="block"
+
+document.getElementById("musica").play()
+
+escribir()
+
+setInterval(crearCorazon,280)
+setInterval(crearFlor,450)
+setInterval(crearConfeti,140)
+setInterval(crearFuego,1100)
+
+}
+
+/* efectos */
+
+function crearCorazon(){
+const heart=document.createElement("div")
+heart.classList.add("heart")
+heart.innerHTML="💖"
+heart.style.left=Math.random()*100+"vw"
+heart.style.animationDuration=(3+Math.random()*3)+"s"
+document.body.appendChild(heart)
+setTimeout(()=>{heart.remove()},6000)
+}
+
+function crearFlor(){
+const flower=document.createElement("div")
+flower.classList.add("flower")
+flower.innerHTML="🌹"
+flower.style.left=Math.random()*100+"vw"
+flower.style.animationDuration=(4+Math.random()*3)+"s"
+document.body.appendChild(flower)
+setTimeout(()=>{flower.remove()},7000)
+}
+
+function crearConfeti(){
+const confetti=document.createElement("div")
+confetti.classList.add("confetti")
+confetti.style.left=Math.random()*100+"vw"
+confetti.style.background=`hsl(${Math.random()*360},100%,50%)`
+confetti.style.animationDuration=(3+Math.random()*3)+"s"
+document.body.appendChild(confetti)
+setTimeout(()=>{confetti.remove()},5000)
+}
+
+function crearFuego(){
+const fire=document.createElement("div")
+fire.classList.add("firework")
+fire.innerHTML="🎆"
+fire.style.left=Math.random()*100+"vw"
+fire.style.top=Math.random()*60+"vh"
+document.body.appendChild(fire)
+setTimeout(()=>{fire.remove()},1000)
+}
+
+</script>
+</body>
+</html>
+:::
