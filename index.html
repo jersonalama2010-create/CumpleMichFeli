@@ -1,251 +1,235 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Sorpresa 💝</title>
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorpresa 💝</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3, #ffd3a5);
+            overflow: hidden;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
 
-body{
-margin:0;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-font-family:'Segoe UI',sans-serif;
-background:linear-gradient(135deg,#ff758c,#ff7eb3,#ffd3a5);
-overflow:hidden;
-color:white;
-text-align:center;
-}
+        /* Estrellas de fondo */
+        .star {
+            position: absolute;
+            color: white;
+            font-size: 14px;
+            opacity: 0.8;
+            animation: brillar 2s infinite alternate;
+            z-index: 0;
+        }
 
-/* estrellas */
+        @keyframes brillar {
+            from { opacity: 0.2; }
+            to { opacity: 1; }
+        }
 
-.star{
-position:absolute;
-color:white;
-font-size:14px;
-opacity:0.8;
-animation:brillar 2s infinite alternate;
-}
+        /* Botón principal */
+        #boton {
+            padding: 20px 45px;
+            font-size: 28px;
+            border: none;
+            border-radius: 60px;
+            background: #ff2e63;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+            transition: 0.3s;
+            z-index: 10;
+        }
 
-@keyframes brillar{
-from{opacity:0.2}
-to{opacity:1}
-}
+        #boton:hover {
+            transform: scale(1.1);
+            background: #ff4d6d;
+        }
 
-/* botón */
+        /* Mensaje principal */
+        #mensaje {
+            display: none;
+            font-size: 50px;
+            font-weight: bold;
+            text-shadow: 0 0 10px #fff, 0 0 25px #ff4d6d;
+            margin-bottom: 20px;
+            z-index: 5;
+        }
 
-button{
-padding:26px 55px;
-font-size:34px;
-border:none;
-border-radius:60px;
-background:#ff2e63;
-color:white;
-cursor:pointer;
-box-shadow:0 12px 28px rgba(0,0,0,0.35);
-transition:0.3s;
-}
+        /* Carta de texto */
+        #carta {
+            max-width: 600px;
+            font-size: 22px;
+            line-height: 1.6;
+            display: none;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            z-index: 5;
+        }
 
-button:hover{
-transform:scale(1.12);
-}
+        /* Animaciones de elementos flotantes */
+        .heart, .flower, .confetti, .firework {
+            position: absolute;
+            pointer-events: none;
+        }
 
-/* mensaje */
+        .heart {
+            bottom: -50px;
+            font-size: 30px;
+            animation: subir 6s linear infinite;
+        }
 
-#mensaje{
-display:none;
-font-size:72px;
-font-weight:bold;
-text-shadow:
-0 0 10px #fff,
-0 0 25px #ff4d6d,
-0 0 45px #ff4d6d;
-margin-bottom:25px;
-}
+        @keyframes subir {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-110vh); opacity: 0; }
+        }
 
-/* carta */
+        .flower {
+            top: -50px;
+            font-size: 35px;
+            animation: caer 7s linear infinite;
+        }
 
-#carta{
-max-width:700px;
-font-size:26px;
-line-height:1.7;
-display:none;
-margin-top:20px;
-}
+        @keyframes caer {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
 
-/* corazones */
+        .confetti {
+            width: 12px;
+            height: 12px;
+            top: -10px;
+            animation: confeti 5s linear infinite;
+        }
 
-.heart{
-position:absolute;
-bottom:-50px;
-font-size:34px;
-animation:subir 6s linear infinite;
-}
+        @keyframes confeti {
+            to { transform: translateY(110vh) rotate(720deg); }
+        }
 
-@keyframes subir{
-0%{transform:translateY(0);opacity:1;}
-100%{transform:translateY(-110vh);opacity:0;}
-}
+        .firework {
+            font-size: 50px;
+            animation: boom 1s ease-out forwards;
+        }
 
-/* claveles */
-
-.flower{
-position:absolute;
-top:-50px;
-font-size:40px;
-animation:caer 7s linear infinite;
-}
-
-@keyframes caer{
-to{
-transform:translateY(110vh) rotate(360deg);
-}
-}
-
-/* confeti */
-
-.confetti{
-position:absolute;
-width:12px;
-height:12px;
-top:-10px;
-animation:confeti 5s linear infinite;
-}
-
-@keyframes confeti{
-to{
-transform:translateY(110vh) rotate(720deg);
-}
-}
-
-/* fuegos artificiales */
-
-.firework{
-position:absolute;
-font-size:55px;
-animation:boom 1s ease-out forwards;
-}
-
-@keyframes boom{
-0%{transform:scale(0);}
-100%{transform:scale(2.2);opacity:0;}
-}
-
-</style>
+        @keyframes boom {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+    </style>
 </head>
 <body>
-🎁 ÁBRELO 💖
-<div id="mensaje"></div>
-<div id="carta">
-Hoy no solo celebramos tu cumpleaños,<br>
-celebramos lo especial que eres.<br><br>
-Gracias por existir, por tu sonrisa,
-por la luz que llevas contigo
-y por hacer que los días sean más bonitos.
 
-Espero que este nuevo año de tu vida
-esté lleno de sueños cumplidos,
-momentos felices y muchas razones para sonreír.
+    <button id="boton" onclick="abrir()">🎁 ÁBRELO 💖</button>
 
-Feliz cumpleaños, preciosa de mi corazón. 💖
-</div>
+    <div id="mensaje"></div>
+    
+    <div id="carta">
+        Hoy no solo celebramos tu cumpleaños,<br>
+        celebramos lo especial que eres.<br><br>
+        Gracias por existir, por tu sonrisa,<br>
+        por la luz que llevas contigo<br>
+        y por hacer que los días sean más bonitos.<br><br>
+        Espero que este nuevo año de tu vida<br>
+        esté lleno de sueños cumplidos,<br>
+        momentos felices y muchas razones para sonreír.<br><br>
+        <strong>Feliz cumpleaños, preciosa de mi corazón. 💖</strong>
+    </div>
 
-<audio id="musica" loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">
-</audio>
-<script>
+    <audio id="musica" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">
+    </audio>
 
-/* estrellas */
+    <script>
+        // Crear estrellas de fondo al cargar
+        for(let i=0; i<70; i++){
+            const star = document.createElement("div");
+            star.classList.add("star");
+            star.innerHTML = "✦";
+            star.style.left = Math.random() * 100 + "vw";
+            star.style.top = Math.random() * 100 + "vh";
+            star.style.animationDelay = Math.random() * 2 + "s";
+            document.body.appendChild(star);
+        }
 
-for(let i=0;i<70;i++){
-const star=document.createElement("div")
-star.classList.add("star")
-star.innerHTML="✦"
-star.style.left=Math.random()*100+"vw"
-star.style.top=Math.random()*100+"vh"
-document.body.appendChild(star)
-}
+        const texto = "🎉 FELIZ CUMPLEAÑOS\nPRECIOSA DE MI CORAZÓN 💖";
+        let index = 0;
 
-/* texto que se escribe */
+        function escribir() {
+            const mensajeElemento = document.getElementById("mensaje");
+            if (index < texto.length) {
+                mensajeElemento.innerHTML += texto[index] === "\n" ? "<br>" : texto[index];
+                index++;
+                setTimeout(escribir, 80);
+            } else {
+                document.getElementById("carta").style.display = "block";
+            }
+        }
 
-const texto="🎉 FELIZ CUMPLEAÑOS\nPRECIOSA DE MI CORAZÓN 💖"
-let i=0
+        function abrir() {
+            // Ocultar botón y mostrar mensaje
+            document.getElementById("boton").style.display = "none";
+            document.getElementById("mensaje").style.display = "block";
 
-function escribir(){
-if(i<texto.length){
-document.getElementById("mensaje").innerHTML+=texto[i]=="\n"?"<br>":texto[i]
-i++
-setTimeout(escribir,70)
-}else{
-document.getElementById("carta").style.display="block"
-}
-}
+            // Intentar reproducir música
+            const audio = document.getElementById("musica");
+            audio.play().catch(e => console.log("La reproducción automática requiere interacción previa"));
 
-/* abrir sorpresa */
+            // Iniciar efectos
+            escribir();
+            setInterval(crearCorazon, 400);
+            setInterval(crearFlor, 600);
+            setInterval(crearConfeti, 200);
+            setInterval(crearFuego, 1500);
+        }
 
-function abrir(){
+        function crearCorazon() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "💖";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }
 
-document.getElementById("boton").style.display="none"
+        function crearFlor() {
+            const flower = document.createElement("div");
+            flower.classList.add("flower");
+            flower.innerHTML = "🌹";
+            flower.style.left = Math.random() * 100 + "vw";
+            document.body.appendChild(flower);
+            setTimeout(() => flower.remove(), 7000);
+        }
 
-const m=document.getElementById("mensaje")
-m.style.display="block"
+        function crearConfeti() {
+            const confetti = document.createElement("div");
+            confetti.classList.add("confetti");
+            confetti.style.left = Math.random() * 100 + "vw";
+            confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 5000);
+        }
 
-document.getElementById("musica").play()
-
-escribir()
-
-setInterval(crearCorazon,280)
-setInterval(crearFlor,450)
-setInterval(crearConfeti,140)
-setInterval(crearFuego,1100)
-
-}
-
-/* efectos */
-
-function crearCorazon(){
-const heart=document.createElement("div")
-heart.classList.add("heart")
-heart.innerHTML="💖"
-heart.style.left=Math.random()*100+"vw"
-heart.style.animationDuration=(3+Math.random()*3)+"s"
-document.body.appendChild(heart)
-setTimeout(()=>{heart.remove()},6000)
-}
-
-function crearFlor(){
-const flower=document.createElement("div")
-flower.classList.add("flower")
-flower.innerHTML="🌹"
-flower.style.left=Math.random()*100+"vw"
-flower.style.animationDuration=(4+Math.random()*3)+"s"
-document.body.appendChild(flower)
-setTimeout(()=>{flower.remove()},7000)
-}
-
-function crearConfeti(){
-const confetti=document.createElement("div")
-confetti.classList.add("confetti")
-confetti.style.left=Math.random()*100+"vw"
-confetti.style.background=`hsl(${Math.random()*360},100%,50%)`
-confetti.style.animationDuration=(3+Math.random()*3)+"s"
-document.body.appendChild(confetti)
-setTimeout(()=>{confetti.remove()},5000)
-}
-
-function crearFuego(){
-const fire=document.createElement("div")
-fire.classList.add("firework")
-fire.innerHTML="🎆"
-fire.style.left=Math.random()*100+"vw"
-fire.style.top=Math.random()*60+"vh"
-document.body.appendChild(fire)
-setTimeout(()=>{fire.remove()},1000)
-}
-
-</script>
+        function crearFuego() {
+            const fire = document.createElement("div");
+            fire.classList.add("firework");
+            fire.innerHTML = "🎆";
+            fire.style.left = Math.random() * 100 + "vw";
+            fire.style.top = Math.random() * 60 + "vh";
+            document.body.appendChild(fire);
+            setTimeout(() => fire.remove(), 1000);
+        }
+    </script>
 </body>
 </html>
-:::
+
